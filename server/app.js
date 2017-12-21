@@ -25,4 +25,4 @@ res.send('hello world')
 const api = require('./routes/api')
 app.use('/api', api )
 
-app.listen(process.env.PORT || '3001')
+app.listen(process.env.PORT || '8000')

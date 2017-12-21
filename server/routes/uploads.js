@@ -7,17 +7,6 @@ const images = require('../middleware/uploadCheck.js')
 const uploaded = images.multer.single('file')
 
 
-// router.post('/', images.multer.single('image'),
-//     images.sendUploadToGCS, (req,res) => {
-//         res.status(200).json({
-//             message : "Your File Succes To uploads",
-//             link : req.file
-//         })
-//     }
-// )
-// router.post('/', (req,res)=>{
-//     console.log(req.file)
-// })
 router.post('/', function (req, res, next) {
     uploaded(req, res, function(err){
         if (err) {
@@ -32,7 +21,8 @@ router.post('/', function (req, res, next) {
   }, images.sendUploadToGCS, (req,res) => {
     res.status(200).json({
         message : "Your File Succes To uploads",
-        link : req.file
+        link : req.file.cloudStoragePublicUrl
+        
     })
   })
   
