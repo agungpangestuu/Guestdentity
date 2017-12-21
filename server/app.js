@@ -6,6 +6,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
+const axios = require('axios')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
