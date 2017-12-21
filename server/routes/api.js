@@ -9,6 +9,7 @@ const { createUser,
   getAllUsers,
   findByIdAndRemove
   } = require('../controllers/userCtrl.js')
+const Guest = require('../controllers/guestController')
 
 
 
@@ -31,4 +32,9 @@ router.get('/users', getAllUsers)
 
 router.delete('/users/:id', findByIdAndRemove)
 
+router.get('/guests', Guest.findAllGuest)
+
+router.post('/guests', Guest.visionGuestPost)
+
 module.exports = router
+
