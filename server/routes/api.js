@@ -8,6 +8,8 @@ const { createUser,
   } = require('../controllers/userCtrl.js')
 
 
+
+
 // ================= users 
 router.post('/users', createUser)
 
@@ -18,5 +20,8 @@ router.put('/users/:id', findByIdAndUpdate)
 router.get('/users', getAllUsers)
 
 router.delete('/users/:id', findByIdAndRemove)
+
+router.use('/upload', require('./uploads.js'))
+
 
 module.exports = router
