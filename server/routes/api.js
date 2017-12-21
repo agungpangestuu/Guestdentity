@@ -20,6 +20,8 @@ router.post('/facedetection', faceDetect, findSimilars)
 
 router.post('/findsimilars', findSimilars)
 
+
+
 // ================= users 
 
 router.post('/users', createUser)
@@ -32,9 +34,13 @@ router.get('/users', getAllUsers)
 
 router.delete('/users/:id', findByIdAndRemove)
 
+
 router.get('/guests', Guest.findAllGuest)
 
 router.post('/guests', Guest.visionGuestPost)
 
+router.use('/upload', require('./uploads.js'))
+
 module.exports = router
+
 
