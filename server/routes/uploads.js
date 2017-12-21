@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 var multer  = require('multer')
@@ -10,6 +11,7 @@ const uploaded = images.multer.single('file')
 router.post('/', function (req, res, next) {
     uploaded(req, res, function(err){
         if (err) {
+            console.log(err)
             return res.status(400).json({
                 message : "err"
             })

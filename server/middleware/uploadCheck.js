@@ -4,12 +4,14 @@ const path = require('path')
 
 const Storage = require('@google-cloud/storage');
 
-const bucketName = process.env.BUCKETNAME;
+const bucketName = 'miracle.adidis.ga'
 
 
 const storage = Storage({
-    projectId : process.env.GCLOUD_PROJECT,
-    keyFilename : process.env.KEYFILE_PATH
+    // projectId : process.env.GCLOUD_PROJECT,
+    // keyFilename : process.env.KEYFILE_PATH
+    projectId: 'express-186802',
+    keyFilename: 'keyfilename.json'
 })
 
 const bucket = storage.bucket(bucketName)

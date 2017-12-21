@@ -11,7 +11,7 @@ const http = axios.create({
 
 Vue.use(Vuex)
 const state = {
-  dataKtp: {}
+  dataKtp: {},
 }
 
 const mutations = {
