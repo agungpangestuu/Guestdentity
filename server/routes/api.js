@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const axios = require('axios')
+const { createFaceListId, addingFaceId, getFacelist, faceDetect, findSimilars } = require('../middleware/facialDetection')
+
 const { createUser,
   findById, 
   findByIdAndUpdate,
@@ -8,7 +11,16 @@ const { createUser,
   } = require('../controllers/userCtrl.js')
 
 
+
+
+router.post('/addingfaceid', addingFaceId)
+
+router.post('/facedetection', faceDetect, findSimilars)
+
+router.post('/findsimilars', findSimilars)
+
 // ================= users 
+
 router.post('/users', createUser)
 
 router.get('/users/:email', findById)
