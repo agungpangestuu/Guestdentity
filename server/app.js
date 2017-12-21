@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
@@ -23,4 +25,4 @@ res.send('hello world')
 const api = require('./routes/api')
 app.use('/api', api )
 
-app.listen(process.env.PORT || '8000')
+app.listen(process.env.PORT || '3001')
