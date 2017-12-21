@@ -12,7 +12,7 @@ app.use(morgan('dev'))
 app.use(cors())
 
 mongoose.Promise = global.Promise
-mongoose.connect(`mongodb://<username>@<password>.mlab.com:59845/mydb_hacktiv8`)
+mongoose.connect(`mongodb://wisnu:123@ds159845.mlab.com:59845/mydb_hacktiv8`)
   .then(() => console.log('db connection succesfull to hacktivoverflow'))
   .catch((err) => console.log(err))
 
