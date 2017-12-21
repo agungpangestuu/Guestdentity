@@ -1,7 +1,19 @@
 const axios = require('axios')
+const Guest = require('../models/guest-schema')
 
-class Vision {
-  static visionPost(req, res) {
+class GuestController {
+  static findAllGuest(req, res) {
+    Guest.find()
+    .then( guests => {
+      res.status(200).json({
+        message : 'list all Guest',
+        guests : guests
+      })
+    })
+    .catch( err => res.status(500).send(err))
+  }
+
+  static visionGuestPost(req, res) {
     let data = {
       "requests": [
         {
@@ -28,22 +40,28 @@ class Vision {
     .then( result => {
       //raw identitas nanti di edit setelah ada multer
       let rawData = result.data.responses[0].textAnnotations[0].description.split('\n')
-      let NIK = rawData[2].slice(3)
-      let nama = rawData[3]
-      let alamat = rawData[10]
-      res.status(200).json({
-        result : rawData,
-        NIK : NIK,
-        nama : nama,
-        alamat : alamat
+
+      let objGuest = {
+        NIK : rawData[4],
+        nama : rawData[5],
+        alamat : rawData[11]
+      }
+      let guest = new Guest(objGuest)
+
+      guest.save()
+      .then( dataGuest => {
+        res.status(200).json({
+          message : 'success input guest',
+          
+          guest  : dataGuest
+        })
       })
     })
     .catch( err => {
-      console.log('eroor', err)
       res.status(500).send(err)
     })
   }
 
 }
 
-module.exports = Vision
+module.exports = GuestController

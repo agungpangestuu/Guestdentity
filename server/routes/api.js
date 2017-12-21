@@ -6,7 +6,7 @@ const { createUser,
   getAllUsers,
   findByIdAndRemove
   } = require('../controllers/userCtrl.js')
-const Vision = require('../controllers/visionController')
+const Guest = require('../controllers/guestController')
 
 
 // ================= users 
@@ -20,6 +20,8 @@ router.get('/users', getAllUsers)
 
 router.delete('/users/:id', findByIdAndRemove)
 
-router.post('/vision', Vision.visionPost)
+router.get('/guests', Guest.findAllGuest)
+
+router.post('/guests', Guest.visionGuestPost)
 
 module.exports = router
