@@ -2,9 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const guestSchema = new Schema({
-  NIK : String,
   nama : String,
-  alamat : String,
+  description : Array,
   createdAt : {
     type : Date,
     default : Date.now
