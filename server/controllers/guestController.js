@@ -48,13 +48,13 @@ class GuestController {
       })
       
       if(index === -1) {
-        res.status(404).json({
+        res.status(400).json({
           message : 'try foto again'
         })
         return index
       }
       if(!rawData[index -1] === rawData[index-1].toUpperCase()) {
-        res.status(404).json({
+        res.status(400).json({
           message : 'try foto again'
         })
         return rawData
