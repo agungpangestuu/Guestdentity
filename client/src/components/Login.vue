@@ -1,6 +1,7 @@
 <template>
 <div>
   <h1>Halaman Login</h1>
+  <a class="button is-primary is-outlined"><router-link :to="{ path: '/signup' }">Signup</router-link></a>
   <a class="button is-primary is-outlined" @click="loginBtn">Login</a>
      <div id="app" class="component">
       <webcam ref="webcam"></webcam>
