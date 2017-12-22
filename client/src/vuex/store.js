@@ -18,27 +18,33 @@ const state = {
     email: '',
     alamat: ''
   },
+  nama: '',
   ktp: null
 }
 
 const mutations = {
   setKtp (state, payload) {
     state.ktp = payload
+  },
+  setData (state, payload) {
+    localStorage.setItem('name', payload)
+    state.nama = payload
   }
 }
 const actions = {
   postVision ({state, commit}, payload) {
     console.log('payload post: ', state.ktp)
     let formData = new FormData()
-    formData.append('image', state.ktp)
+    formData.append('file', state.ktp)
     console.log('form data ====== :', formData)
     axios.post('http://localhost:8000/api/upload/', formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
     })
-    .then(result => {
-      console.log('dataVision :', result)
+    .then(({data}) => {
+      console.log('dataVision :', data)
+      commit('setData', data.guest.nama)
     })
     .catch(err => {
       console.log('err :', err)

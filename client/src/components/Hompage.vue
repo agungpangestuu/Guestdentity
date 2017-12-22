@@ -2,15 +2,13 @@
   <div class="hello">
     <div class="container">
       <div class="notification">
-        <h1>Selamat Datang Di Hacktiv8</h1>
+        <h1> Selamat Datang Di  GuestDentity</h1>
+        <a class="button is-primary is-outlined" @click="logout">logout</a>
       </div>
       <Modal/>
       <Tabel/>
 
     </div>
-
-
-
 
   </div>
 </template>
@@ -23,6 +21,15 @@ export default {
   components: { Tabel, Modal },
   data () {
     return {
+      name: localStorage.getItem('name')
+    }
+  },
+  methods: {
+    logout: function () {
+      localStorage.removeItem('faceId')
+      localStorage.removeItem('name')
+      localStorage.removeItem('flag')
+      this.$router.push({ path: '/login' })
     }
   }
 }

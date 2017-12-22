@@ -10,7 +10,7 @@
       </thead>
       <tbody> 
         <tr>
-          <td>Amri</td>
+          <td>{{name}}</td>
           <td>Mo ketemu mbak ica</td>
           <td>Malam JUmat</td>
           
@@ -24,7 +24,9 @@
 export default {
   name: 'Table',
   data () {
-    return {}
+    return {
+      name: localStorage.getItem('name')
+    }
   }
 }
 </script>
