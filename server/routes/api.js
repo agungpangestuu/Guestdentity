@@ -38,8 +38,6 @@ router.delete('/users/:id', findByIdAndRemove)
 
 router.get('/guests', Guest.findAllGuest)
 
-router.post('/guests', Guest.visionGuestPost)
-
 router.get('/guestbook', GuestBook.getAll)
 
 router.post('/guestbook', GuestBook.createBookGuest)
