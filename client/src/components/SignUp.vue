@@ -7,9 +7,8 @@
     <br>
     <label for="Email"></label>
     <input type="text" v-model="user.email" placeholder="email">
-    <input type="submit" name="submit" value="submit">
   </form>
-  <button id="fbLogin" @click="loginBtn">FB Login</button>
+  <button id="fbLogin" @click="loginBtn">Submit</button>
      <div id="app" class="component">
       <webcam ref="webcam"></webcam>
       <img :src="this.photo" style="width:300px;height:300px; display:none"/>
@@ -37,12 +36,13 @@ export default {
   methods: {
     ...mapActions([
       'login',
-      'logout'
+      'logout',
+      'postVision'
     ]),
     loginBtn: function () {
       localStorage.setItem('flag', 'signup')
       this.take_photo()
-      
+      this.postVision()
       // this.login(user)
     },
     take_photo: function () {

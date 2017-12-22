@@ -11,7 +11,11 @@ const http = axios.create({
 
 Vue.use(Vuex)
 const state = {
-  dataKtp: {},
+  user: {
+    username: '',
+    email: '',
+    alamat: ''
+  },
 }
 
 const mutations = {
@@ -19,11 +23,12 @@ const mutations = {
 }
 const actions = {
   postVision ({commit}, payload) {
-    http.post('/api/vision', {
-      uri: payload
+    http.post('/api/guests', {
+      uri: 'http://www.tngunungmerbabu.org/upload/simaksi/ktp.jpg'
     })
-    .then({data})
-    console.log('dataVision :', data)
+    .then(result => {
+      console.log('dataVision :', result)
+    })
     .catch(err => {
       console.log('err :', err)
     })

@@ -41,7 +41,6 @@ export default {
     ]),
     loginBtn: function () {
       localStorage.setItem('flag', 'login')
-      this.$router.push({name: 'Hompage'})
       this.take_photo()
       // this.login(user)
     },

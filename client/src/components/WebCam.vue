@@ -75,7 +75,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'login'
+      'login',
+      'postVision'
     ]),
     hasMedia () {
       return !!this.getMedia()
@@ -149,13 +150,12 @@ export default {
         })
     },
     postFace (fileName) {
-      const URL = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/facelists/'
       let self = this
       setTimeout( () => {
         let storageRef = firebase.storage().ref()
         storageRef.child(`images/${fileName}.png`).getDownloadURL().then(function(url) {
           console.log('url ', url)
-           axios.post(`http://localhost:3000/api/addingfaceid`, {
+           axios.post(`http://localhost:8000/api/addingfaceid`, {
             url: url,
             uniqueName: fileName
           }, {
@@ -166,7 +166,8 @@ export default {
           .then(res => {
             console.log('added FaceId: ', res)
             self.persited = res.data.data.persistedFaceId
-            self.login()
+            self.postVision()
+            // self.login()
             console.log('self', self)
           })
           .catch(err => {
@@ -185,7 +186,7 @@ export default {
         let storageRef = firebase.storage().ref()
         storageRef.child(`images/${fileName}.png`).getDownloadURL().then(function(url) {
           console.log('url ', url)
-           axios.post(`http://localhost:3000/api/facedetection`, {
+           axios.post(`http://localhost:8000/api/facedetection`, {
             url: url,
           }, {
             headers: {
@@ -194,12 +195,14 @@ export default {
           })
           .then(res => {
             console.log('FaceId: ', res)
+            self.$router.push({name: 'Hompage'})
             // self.persited = res.data.data.persistedFaceId
             //self.login()
             console.log('self', self)
           })
           .catch(err => {
             console.log('err addingFaceId ', err)
+            alert(err)
           })
         }).catch(function(error) {
           // Handle any errors
