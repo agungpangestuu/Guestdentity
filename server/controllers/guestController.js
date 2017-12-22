@@ -1,6 +1,7 @@
 const axios = require('axios')
 const Guest = require('../models/guest-schema')
 
+
 class GuestController {
   static findAllGuest(req, res) {
     Guest.find()
@@ -39,12 +40,29 @@ class GuestController {
       })
     .then( result => {
       //raw identitas nanti di edit setelah ada multer
+      // finding name by index 'Nama' -1
       let rawData = result.data.responses[0].textAnnotations[0].description.split('\n')
-      // console.log(rawData, ' rawdata')
+      console.log(rawData)
+      let index = rawData.findIndex(x => {
+        return x === 'Nama'
+      })
+      
+      if(index === -1) {
+        res.status(400).json({
+          message : 'try foto again'
+        })
+        return index
+      }
+      if(!rawData[index -1] === rawData[index-1].toUpperCase()) {
+        res.status(400).json({
+          message : 'try foto again'
+        })
+        return rawData
+      }
+      
       let objGuest = {
-        NIK : rawData[4],
-        nama : rawData[5],
-        alamat : rawData[11]
+        nama : rawData[index-1],
+        description : rawData
       }
       let guest = new Guest(objGuest)
 
@@ -52,7 +70,6 @@ class GuestController {
       .then( dataGuest => {
         res.status(200).json({
           message : 'success input guest',
-          
           guest  : dataGuest
         })
       })
