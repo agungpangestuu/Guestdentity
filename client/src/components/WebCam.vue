@@ -170,6 +170,7 @@ export default {
             self.persited = res.data.data.persistedFaceId
             
             self.postVision()
+            self.$router.push({path: '/login'})
             // self.login()
             // console.log('self', self)
           })
