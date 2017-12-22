@@ -12,7 +12,10 @@ let router = new Router({
     {
       path: '/',
       name: 'Hompage',
-      component: Hompage
+      component: Hompage,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/signup',
@@ -27,7 +30,7 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  let currentUser = localStorage.getItem('userId')
+  let currentUser = localStorage.getItem('faceId')
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) next('/login')
   else if (!requiresAuth && currentUser) next('/')

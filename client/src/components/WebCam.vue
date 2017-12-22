@@ -31,7 +31,8 @@ export default {
       canvas: null,
       url: '',
       id: '',
-      persited: ''
+      persited: '',
+      ktps: this.ktp
     }
   },
   props: {
@@ -53,7 +54,8 @@ export default {
     }
   },
   computed: mapState ([
-    'user'
+    'user',
+    'ktp'
   ]),
   mounted () {
     if (!this.hasMedia()) {
@@ -166,9 +168,10 @@ export default {
           .then(res => {
             console.log('added FaceId: ', res)
             self.persited = res.data.data.persistedFaceId
+            
             self.postVision()
             // self.login()
-            console.log('self', self)
+            // console.log('self', self)
           })
           .catch(err => {
             console.log('err addingFaceId ', err)
@@ -195,14 +198,19 @@ export default {
           })
           .then(res => {
             console.log('FaceId: ', res)
-            self.$router.push({name: 'Hompage'})
+            if (res.data.data.length > 0) {
+              localStorage.setItem('faceId', res.data.data[0].persistedFaceId)
+              self.$router.push({path: '/'})
+            } else {
+              alert('muka lu mana?')
+            }
             // self.persited = res.data.data.persistedFaceId
             //self.login()
             console.log('self', self)
           })
           .catch(err => {
             console.log('err addingFaceId ', err)
-            alert(err)
+            alert('muka lu mana?')
           })
         }).catch(function(error) {
           // Handle any errors

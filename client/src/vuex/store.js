@@ -3,6 +3,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import { log } from 'util';
+import { stat } from 'fs';
 
 const http = axios.create({
   baseURL: 'http://localhost:8000/'
@@ -16,15 +18,24 @@ const state = {
     email: '',
     alamat: ''
   },
+  ktp: null
 }
 
 const mutations = {
-
+  setKtp (state, payload) {
+    state.ktp = payload
+  }
 }
 const actions = {
-  postVision ({commit}, payload) {
-    http.post('/api/guests', {
-      uri: 'http://www.tngunungmerbabu.org/upload/simaksi/ktp.jpg'
+  postVision ({state, commit}, payload) {
+    console.log('payload post: ', state.ktp)
+    let formData = new FormData()
+    formData.append('image', state.ktp)
+    console.log('form data ====== :', formData)
+    axios.post('http://localhost:8000/api/upload/', formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
     })
     .then(result => {
       console.log('dataVision :', result)
@@ -32,6 +43,10 @@ const actions = {
     .catch(err => {
       console.log('err :', err)
     })
+  },
+  postKtp ({commit}, payload) {
+    console.log(payload)
+    commit('setKtp', payload)
   }
 }
 
