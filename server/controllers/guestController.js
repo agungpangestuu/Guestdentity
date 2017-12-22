@@ -20,7 +20,7 @@ class GuestController {
           "image": {
             "source": {
               "imageUri":
-                req.body.uri
+              req.file.cloudStoragePublicUrl
             }
           },
           "features": [
@@ -33,14 +33,14 @@ class GuestController {
       ]
     }
 
-    axios.post(' https://vision.googleapis.com/v1/images:annotate?key=AIzaSyA6tkCsALPbiLlw038YHJ0izByVMcNgwU8',
+    axios.post('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyA6tkCsALPbiLlw038YHJ0izByVMcNgwU8',
       data, {
         headers : { 'Content-Type': 'application/json'}
       })
     .then( result => {
       //raw identitas nanti di edit setelah ada multer
       let rawData = result.data.responses[0].textAnnotations[0].description.split('\n')
-      console.log(rawData, ' rawdata')
+      // console.log(rawData, ' rawdata')
       let objGuest = {
         NIK : rawData[4],
         nama : rawData[5],
@@ -58,7 +58,10 @@ class GuestController {
       })
     })
     .catch( err => {
-      res.status(500).send(err)
+      console.log(err)
+      res.status(500).json({
+        message : "error internal server"
+      })
     })
   }
 
