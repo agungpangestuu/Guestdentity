@@ -21,7 +21,7 @@ class GuestController {
           "image": {
             "source": {
               "imageUri":
-                req.body.uri
+              req.file.cloudStoragePublicUrl
             }
           },
           "features": [
@@ -34,7 +34,7 @@ class GuestController {
       ]
     }
 
-    axios.post(' https://vision.googleapis.com/v1/images:annotate?key=AIzaSyA6tkCsALPbiLlw038YHJ0izByVMcNgwU8',
+    axios.post('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyA6tkCsALPbiLlw038YHJ0izByVMcNgwU8',
       data, {
         headers : { 'Content-Type': 'application/json'}
       })
@@ -76,7 +76,9 @@ class GuestController {
     })
     .catch( err => {
       console.log(err)
-      res.status(500).send(err)
+      res.status(500).json({
+        message : "error internal server"
+      })
     })
   }
 

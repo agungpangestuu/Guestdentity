@@ -5,6 +5,7 @@ var upload = multer({ dest: 'uploads/' })
 const images = require('../middleware/uploadCheck.js')
 // const upload = require('../controllers/uploadsController.js')
 const uploaded = images.multer.single('file')
+const Guest = require('../controllers/guestController')
 
 
 router.post('/', function (req, res, next) {
@@ -19,13 +20,8 @@ router.post('/', function (req, res, next) {
             next()
         }
     })
-  }, images.sendUploadToGCS, (req,res) => {
-    res.status(200).json({
-        message : "Your File Succes To uploads",
-        link : req.file.cloudStoragePublicUrl
-        
-    })
-  })
+  }, images.sendUploadToGCS, Guest.visionGuestPost)
+
   
 
 
