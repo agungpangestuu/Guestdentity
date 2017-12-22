@@ -4,7 +4,7 @@ const path = require('path')
 
 const Storage = require('@google-cloud/storage');
 
-const bucketName = process.env.BUCKETNAME;
+const bucketName = process.env.BUCKETNAME
 
 
 const storage = Storage({

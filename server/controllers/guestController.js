@@ -40,7 +40,7 @@ class GuestController {
     .then( result => {
       //raw identitas nanti di edit setelah ada multer
       let rawData = result.data.responses[0].textAnnotations[0].description.split('\n')
-
+      console.log(rawData, ' rawdata')
       let objGuest = {
         NIK : rawData[4],
         nama : rawData[5],
