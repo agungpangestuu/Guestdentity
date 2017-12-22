@@ -1,7 +1,7 @@
 <template>
   <div>
     <video ref="video" :width="this.width" :height="this.height" :src="this.source" :autoplay="this.autoplay"></video>
-    <a id="dl-btn" href="#" download="glorious_selfie.jpeg">Save Photo</a>
+    <!-- <a id="dl-btn" href="#" download="glorious_selfie.jpeg">Save Photo</a> -->
   </div>
   
 </template>

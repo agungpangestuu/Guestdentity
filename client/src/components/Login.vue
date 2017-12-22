@@ -1,15 +1,7 @@
 <template>
 <div>
   <h1>Halaman Login</h1>
-  <!-- <form @submit.prevent="loginBtn">
-    <label for="Username"></label>
-    <input type="text" v-model="user.username" placeholder="username">
-    <br>
-    <label for="Email"></label>
-    <input type="text" v-model="user.email" placeholder="email">
-    <input type="submit" name="submit" value="submit">
-  </form> -->
-  <button id="fbLogin" @click="loginBtn">Login</button>
+  <a class="button is-primary is-outlined" @click="loginBtn">Login</a>
      <div id="app" class="component">
       <webcam ref="webcam"></webcam>
       <img :src="this.photo" style="width:300px;height:300px; display:none"/>
